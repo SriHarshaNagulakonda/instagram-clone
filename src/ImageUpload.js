@@ -46,7 +46,8 @@ function ImageUpload({username}) {
                   caption: caption,
                   username: username,
                   timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-                });
+                })
+                .catch((error) => alert(error));
     
                 setProgress(0);
                 setCaption("");
@@ -63,7 +64,7 @@ function ImageUpload({username}) {
             <input type="file" onChange={handleChange} />
             <Button onClick={handleUpload}>
                 Upload
-            </Button>        
+            </Button>  
         </div>
     )
 }
