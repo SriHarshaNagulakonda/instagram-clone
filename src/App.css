@@ -40,6 +40,12 @@
 
 .app__headerImage {
   object-fit: contain;
+  max-width: 50px;
+  max-height: 50px;
+}
+
+.app__headerImageModal {
+  object-fit: contain;
 }
 
 .app__headerRight {
@@ -78,3 +84,4 @@
 .app__postsRight {
   margin-left: 10px;
 }
+

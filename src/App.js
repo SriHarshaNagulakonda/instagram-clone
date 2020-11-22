@@ -102,7 +102,7 @@ function App() {
           <form className="app__signup">
             <center>
               <img
-                className="app__headerImage"
+                className="app__headerImageModal"
                 src="https://www.instagram.com/static/images/web/mobile_nav_type_logo-2x.png/1b47f9d0e595.png"
                 alt="instagram"
               />
@@ -141,7 +141,7 @@ function App() {
           <form className="app__signup">
             <center>
               <img
-                className="app__headerImage"
+                className="app__headerImageModal"
                 src="https://www.instagram.com/static/images/web/mobile_nav_type_logo-2x.png/1b47f9d0e595.png"
                 alt="instagram"
               />
@@ -166,12 +166,15 @@ function App() {
       <div className="app__header">
         <img
           className="app__headerImage"
-          src="https://www.instagram.com/static/images/web/mobile_nav_type_logo-2x.png/1b47f9d0e595.png"
+          src="https://www.instagram.com/static/images/ico/favicon-192.png/68d99ba29cc8.png"
           alt="instagram"
        />
 
         {user ?(
-          <Button onClick={() => auth.signOut()}>Logout</Button>      
+          <div className="app_loginContainer">
+            {user.displayName}
+            <Button onClick={() => auth.signOut()}>Logout</Button>   
+          </div>
         ):(
           <div className="app_loginContainer">
             <Button onClick={() => {setOpenSign(true)}}>Sign In</Button>

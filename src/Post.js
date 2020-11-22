@@ -41,13 +41,6 @@ function Post({email,user,username,caption,imageUrl,postId}) {
               setlikes(snapshot.docs.map((doc) => doc.data()))
               // console.log(likes);
             });
-            setTimeout(function(){ 
-              // setLiked(likes.map((like) => like.email).indexOf("sriharshanagulakonda@gmail.com"));
-              setLiked(likes.length);
-            }, 8000);
-            
-
-            // setLiked("false");
           }
   
         return () => {
@@ -72,15 +65,11 @@ function Post({email,user,username,caption,imageUrl,postId}) {
         
         if(likes.map((like) => like.email).indexOf(email)==-1){
           db.collection("posts").doc(postId).collection("likes").add({
-            email: email,
+            username: username,
           });
         }
       };
       
-        
-          // const likes=db.collection("posts").doc(postId).collection("likes").get({
-          //   email:email
-          // });
           
         
       
@@ -89,7 +78,7 @@ function Post({email,user,username,caption,imageUrl,postId}) {
             <div className="post__header">
                 <Avatar
                     className="post__avatar"
-                    src="https://cdn3.vectorstock.com/i/1000x1000/16/87/man-character-face-avatar-portrait-vector-15281687.jpg"
+                    src="https://st2.depositphotos.com/3369547/11372/v/950/depositphotos_113724550-stock-illustration-businessman-concept-avatar-male-person.jpg"
                     alt="username"
                 />
                 <h3>{username}</h3>
@@ -99,13 +88,14 @@ function Post({email,user,username,caption,imageUrl,postId}) {
             <img className="post__image"
              src={imageUrl}
                 alt="image"
+                onDoubleClick={updateLike}
             />
             
             <h4 className="post__text">
               { user && (
-                likes.map((like) => like.email).indexOf(email)==-1 ?
-                <Button className="like_btn" onClick={updateLike}>Like 👍</Button>
-                  :<Button onClick={updateLike} className="like_btn active" > LIKED </Button>
+                likes.map((like) => like.username).indexOf(username)==-1 ?
+                <div className="like_btn" onClick={updateLike}>♡</div>
+                  :<div className="like_btn active" onClick={updateLike} color="red"  >♥</div>
                 )}
                 {likes.length} Likes
             </h4>
@@ -135,7 +125,7 @@ function Post({email,user,username,caption,imageUrl,postId}) {
             { user && (
                 <form className="post__commentBox">
                     <input
-                    className="post__input"
+                    className="post__input input"
                     type="text"
                     placeholder="Add a comment..."
                     value={comment}

@@ -1,7 +1,7 @@
 .imageUpload{
     display: flex;
     flex-direction: column;
-    width: 60%;
+    width: 70%;
     margin-left: auto;
     margin-right: auto;
     margin-top: 10px;
@@ -15,3 +15,31 @@
 .imageUpload__progress{
     width: 100%;
 }
+
+.post__button{
+    /* border: none; */
+    border: 2px solid lightgray;
+    color: white;
+    background-color: blue;
+    margin-top:15px;
+    padding:15px;
+    font-size: medium;
+    flex: 0;
+}
+
+.input__caption  {
+    width: 100%;
+    padding: 12px 20px;
+
+    /* margin: 8px 0; */
+        margin-top:15px;
+    box-sizing: border-box;
+    border: 3px solid #ccc;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+  }
+  
+  .input__caption:focus {
+    border: 3px solid #555;
+  }

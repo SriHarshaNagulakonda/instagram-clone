@@ -1,5 +1,5 @@
 .post {
-    border: 1px solid lightgray;
+    border: 1px solid rgb(134, 133, 133);
     width: fit-content;
     margin-bottom: 45px;
     background-color: #ffffff;
@@ -23,12 +23,12 @@
     border-bottom: 1px solid lightgray;
   }
   
-  .post__text {
-    padding: 10px;
+  .post__text{
+        padding: 10px;
     text-align: left;
     font-weight: normal;
   }
-  
+
   .post__comments {
     padding: 10px;
   }
@@ -39,6 +39,7 @@
   
   .post__commentBox {
     display: flex;
+    margin: 5px;
     margin-top: 10px;
   }
   
@@ -47,17 +48,47 @@
     border: none;
     padding: 10px;
     border-top: 1px solid lightgray;
+    margin-right:5px;
   }
   
+  .post__input {
+    /* padding: 10px;
+    text-align: left;
+    font-weight: normal; */
+    
+    width: 100%;
+    padding: 12px 20px;
+
+    /* margin: 8px 0; */
+        margin-top:15px;
+    box-sizing: border-box;
+    border: 3px solid #ccc;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+  }
+  
+  .post__input:focus {
+    border: 3px solid #555;
+  }
+
+
   .post__button {
     border: none;
     border-top: 1px solid lightgray;
-    color: #6082a3;
-    background-color: transparent;
+    color: white;
+    background-color: blue;
     flex: 0;
   }
 
+.like_btn{
+  font-size: 30px;
+  padding:10px;
+}
+
   .like_btn .active{
-    background-color: blue;
+    background-color: red;
+    color:red;
+    /* font-size: 15px; */
     /* width: 100%; */
   }
