@@ -12,6 +12,7 @@ function Post({email,user,username,caption,imageUrl,postId}) {
     const [liked,setLiked] = useState("false");
 
 
+
     useEffect(() => {
         let unsubscribe;
         if (postId) {
@@ -63,9 +64,9 @@ function Post({email,user,username,caption,imageUrl,postId}) {
       const updateLike = (e) => {
         e.preventDefault();
         
-        if(likes.map((like) => like.email).indexOf(email)==-1){
+        if(likes.map((like) => like.username).indexOf(user.displayName)==-1){
           db.collection("posts").doc(postId).collection("likes").add({
-            username: username,
+            username: user.displayName,
           });
         }
       };
@@ -93,7 +94,7 @@ function Post({email,user,username,caption,imageUrl,postId}) {
             
             <h4 className="post__text">
               { user && (
-                likes.map((like) => like.username).indexOf(username)==-1 ?
+                likes.map((like) => like.username).indexOf(user.displayName)==-1 ?
                 <div className="like_btn" onClick={updateLike}>♡</div>
                   :<div className="like_btn active" onClick={updateLike} color="red"  >♥</div>
                 )}
