@@ -195,6 +195,7 @@ function App() {
                 username={post.username}
                 caption={post.caption}
                 imageUrl={post.imageUrl}
+                email={email}
               />
             ))}
           {/* </FlipMove> */}

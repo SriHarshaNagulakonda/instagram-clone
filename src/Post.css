@@ -26,6 +26,7 @@
   .post__text {
     padding: 10px;
     text-align: left;
+    font-weight: normal;
   }
   
   .post__comments {
@@ -54,4 +55,9 @@
     color: #6082a3;
     background-color: transparent;
     flex: 0;
+  }
+
+  .like_btn .active{
+    background-color: blue;
+    /* width: 100%; */
   }

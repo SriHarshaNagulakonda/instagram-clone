@@ -3,11 +3,13 @@ import './Post.css';
 import Avatar from '@material-ui/core/Avatar';
 import {db,auth, storage} from './firebase';
 import firebase from "firebase";
+import {Button} from "@material-ui/core";
 
-
-function Post({user,username,caption,imageUrl,postId}) {
+function Post({email,user,username,caption,imageUrl,postId}) {
     const [comments, setComments] = useState([]);
     const [comment, setComment] = useState("");
+    const [likes, setlikes] = useState([]);
+    const [liked,setLiked] = useState("false");
 
 
     useEffect(() => {
@@ -27,6 +29,32 @@ function Post({user,username,caption,imageUrl,postId}) {
           unsubscribe();
         };
       }, [postId]);
+
+      useEffect(() => {
+        let unsubscribe;
+        if (postId) {
+          unsubscribe = db
+            .collection("posts")
+            .doc(postId)
+            .collection("likes")
+            .onSnapshot((snapshot) => {
+              setlikes(snapshot.docs.map((doc) => doc.data()))
+              // console.log(likes);
+            });
+            setTimeout(function(){ 
+              // setLiked(likes.map((like) => like.email).indexOf("sriharshanagulakonda@gmail.com"));
+              setLiked(likes.length);
+            }, 8000);
+            
+
+            // setLiked("false");
+          }
+  
+        return () => {
+          unsubscribe()
+        };
+      }, [postId]);
+
   
       const postComment = (e) => {
         e.preventDefault();
@@ -38,8 +66,24 @@ function Post({user,username,caption,imageUrl,postId}) {
         });
         setComment("");
       };
-
-
+      
+      const updateLike = (e) => {
+        e.preventDefault();
+        
+        if(likes.map((like) => like.email).indexOf(email)==-1){
+          db.collection("posts").doc(postId).collection("likes").add({
+            email: email,
+          });
+        }
+      };
+      
+        
+          // const likes=db.collection("posts").doc(postId).collection("likes").get({
+          //   email:email
+          // });
+          
+        
+      
     return (
         <div className="post">
             <div className="post__header">
@@ -56,8 +100,18 @@ function Post({user,username,caption,imageUrl,postId}) {
              src={imageUrl}
                 alt="image"
             />
-
+            
             <h4 className="post__text">
+              { user && (
+                likes.map((like) => like.email).indexOf(email)==-1 ?
+                <Button className="like_btn" onClick={updateLike}>Like 👍</Button>
+                  :<Button onClick={updateLike} className="like_btn active" > LIKED </Button>
+                )}
+                {likes.length} Likes
+            </h4>
+            <h4 className="post__text">
+              
+               
                 <strong> {username} </strong>
                 {caption}
             </h4>
@@ -69,6 +123,14 @@ function Post({user,username,caption,imageUrl,postId}) {
                     </p>
                 ))}
             </div>
+
+            {/* <div className="post__comments">
+                {likes.map((like) => (
+                    <p>
+                      <b>{like.email}</b> 
+                    </p>
+                ))}
+            </div> */}
 
             { user && (
                 <form className="post__commentBox">
@@ -89,9 +151,6 @@ function Post({user,username,caption,imageUrl,postId}) {
                     </button>
                 </form>
             )}
-
-
-
         </div>
     )
 }
