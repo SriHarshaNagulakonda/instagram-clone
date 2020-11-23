@@ -64,7 +64,7 @@ function Post({email,user,username,caption,imageUrl,postId}) {
       const updateLike = (e) => {
         e.preventDefault();
         
-        if(likes.map((like) => like.username).indexOf(user.displayName)==-1){
+        if(user&&likes.map((like) => like.username).indexOf(user.displayName)==-1){
           db.collection("posts").doc(postId).collection("likes").add({
             username: user.displayName,
           });

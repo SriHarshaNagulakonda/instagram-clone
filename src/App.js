@@ -186,6 +186,11 @@ function App() {
 
 
       {/* <h1>Helloooooo, Im creating instagram clone with react</h1> */}
+      {user?.displayName ? (
+        <ImageUpload username={user.displayName}/>
+      ):(
+        <h3 className="login__text">Login to upload Posts</h3>
+      )}
       
       <div className="app__posts">
         <div className="app__postsLeft">
@@ -218,11 +223,7 @@ function App() {
           />
         </div>
       </div>
-      {user?.displayName ? (
-        <ImageUpload username={user.displayName}/>
-      ):(
-        <h3>Login to upload</h3>
-      )}
+
 
     </div>
   );
